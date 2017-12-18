@@ -1,10 +1,12 @@
-#!/usr/bin/env python3
+#!/usr/local/bin python3
 # -*- coding: utf-8 -*-
 
-import logging; logging.basicConfig(level=logging.INFO)
+import logging
 import asyncio, os, json, time
 from datetime import datetime
 from aiohttp import web
+
+logging.basicConfig(level=logging.INFO)
 
 
 def index(request):
@@ -18,6 +20,7 @@ def init(loop):
     srv = yield from loop.create_server(app.make_handler(), '127.0.0.1', 8110)
     logging.info('server started at http://127.0.0.1:8110....')
     return srv
+
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(init(loop))
